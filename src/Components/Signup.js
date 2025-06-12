@@ -16,7 +16,7 @@ const Signup = () => {
 
     const collectData = async () => {
         console.log(name, email, password);
-        let result = await fetch('http://localhost:5000/register', {
+        let result = await fetch('http://192.168.1.29:4000/api/v1/users/register', {
             method: "post",
             body: JSON.stringify({ name, email, password }),
             headers: {

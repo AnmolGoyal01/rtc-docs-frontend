@@ -14,11 +14,11 @@ const Nav = () => {
         <div>
             <img className="logo-ul" alt="logo" src={LogoImg}></img>
             {auth ? <ul className='nav-ul'>
-                <li><Link to="/">Product</Link></li>
-                <li><Link to="/add-product">Add Product</Link></li>
+                <li><Link to="/">Docs</Link></li>
+                <li><Link to="/add-product">Create Document </Link></li>
                 <li><Link to="/update">Update</Link></li>
                 {/* <li><Link to="/profile">Profile</Link></li> */}
-                <li><Link onClick={logout} to="/signup">Logout ({JSON.parse(auth).name})</Link></li>
+                <li><Link onClick={logout} to="/signup">Logout ({JSON.parse(auth).username})</Link></li>
             </ul>
                 : <ul className='nav-ul nav-right'>
                     <li><Link to="/signup">Signup</Link></li>
