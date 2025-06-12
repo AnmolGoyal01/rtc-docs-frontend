@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
-    const [name, setName] = useState("");
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -16,7 +16,7 @@ const Signup = () => {
 
     const collectData = async () => {
         console.log(name, email, password);
-        let result = await fetch('http://192.168.1.29:4000/api/v1/users/register', {
+        let result = await fetch('http://localhost:5000/register', {
             method: "post",
             body: JSON.stringify({ name, email, password }),
             headers: {
@@ -26,18 +26,17 @@ const Signup = () => {
         });
         result = await result.json();
         console.log(result);
-        localStorage.setItem('user', JSON.stringify(result.result));
-        localStorage.setItem('token', JSON.stringify(result.auth));
+        localStorage.setItem('user', JSON.stringify(result?.data?.username || ""));
+        // localStorage.setItem('token', JSON.stringify(result?.data?.username || ""));
         navigate('/');
-        
-
+        console.log(result);
     }
 
     return (
         <div className='register-ul'>
             <h1>Register</h1>
             <input className="inputBox" type="text"
-                value={name} onChange={(e) => setName(e.target.value)} placeholder='Enter Name' />
+                value={username} onChange={(e) => setUsername(e.target.value)} placeholder='Enter Name' />
 
             <input className="inputBox" type='text'
                 value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter Email' />
